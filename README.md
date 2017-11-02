@@ -21,13 +21,11 @@ One need to have a storage account with 4 blobs
 -	1 for Log blob
 
 # Steps to execute the Tests:
-1. Copy the zip file(attached) inside the VM in “/tmp” directory
-2. go to “/tmp” directory inside the VM. (cd /tmp)
-3. unzip the package (unzip auto_test.zip) 
-4. copy the “auto_test” directory to “/var/lib/waagent/Microsoft.Azure.RecoveryServices.VMSnapshotLinux-1.0.*” directory (cp -r auto_test /var/lib/waagent/Microsoft.Azure.RecoveryServices.VMSnapshotLinux-1.0.*)
-5. mv to auto_test directory (cd /var/lib/waagent/Microsoft.Azure.RecoveryServices.VMSnapshotLinux-1.0.*/auto_test) 
-6. update “testconfig.json”
-7. execute the TestRunner script. (python TestRunner.py)
+1. Clone the repository
+2. copy the “auto_test” directory to “/var/lib/waagent/Microsoft.Azure.RecoveryServices.VMSnapshotLinux-1.0.*” directory (cp -r auto_test /var/lib/waagent/Microsoft.Azure.RecoveryServices.VMSnapshotLinux-1.0.*)
+3. mv to auto_test directory (cd /var/lib/waagent/Microsoft.Azure.RecoveryServices.VMSnapshotLinux-1.0.*/auto_test) 
+4. update “testconfig.json”
+5. execute the TestRunner script. (python TestRunner.py)
 
 # Details of parameters in “testconfig.json” file :
 * "StorageAccountName", "StorageAccountKey" are the access details for storage accounts containing the test blobs
