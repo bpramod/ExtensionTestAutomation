@@ -13,6 +13,7 @@
 * Test10: post script not found COF:false
 * Test11: pre script File TimeOut COF:false
 * Test12: Taking sequential snapshots
+* Test13: Check extension billing value
 
 # Pre-requisites to run test cases:
 One need to have a storage account with 4 blobs
