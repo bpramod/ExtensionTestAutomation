@@ -20,7 +20,7 @@ def run_testcase(testcase_no):
 print "Running Test Cases"
 testcases_passed = 0
 testcases_failed = 0
-for i in range(1,13):
+for i in range(1,14):
     if(run_testcase(i)):
         testcases_passed = testcases_passed + 1
     else:
