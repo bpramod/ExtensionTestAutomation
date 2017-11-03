@@ -6,15 +6,15 @@ echo "Iteration Number : "$iteration_number
 snapshot_output="$(python main/handle.py -enable)"
 sleep 40
 status_file=$iteration_number
-operation="getErrorCode"
+operation="getUsedSize"
 extension_folder_name="$(pwd)"
-extension_error_code="$(python auto_test/validate_status_file.py $extension_folder_name/status/$status_file.status $operation)"
-echo "Status File Error Code : "$extension_error_code
-if [ "$extension_error_code" -eq 0 ]
+used_size="$(python auto_test/validate_status_file.py $extension_folder_name/status/$status_file.status $operation)"
+echo "Status File  reported size: "$used_size
+if [ "$used_size" -eq 0 ]
 then
-    echo "Test Case $1 Passed"
-else
     echo "Test Case $1 Failed"
+else
+    echo "Test Case $1 Passed"
 fi
 rm "config/$iteration_number.settings"
 rm "status/$iteration_number.status"
