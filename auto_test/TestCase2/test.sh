@@ -10,8 +10,9 @@ echo "Iteration Number : "$iteration_number
 snapshot_output="$(python main/handle.py -enable)"
 sleep 40
 status_file=$iteration_number
+operation="getErrorCode"
 extension_folder_name="$(pwd)"
-extension_error_code="$(python auto_test/validate_status_file.py $extension_folder_name/status/$status_file.status)"
+extension_error_code="$(python auto_test/validate_status_file.py $extension_folder_name/status/$status_file.status $operation)"
 echo "Status File Error Code : "$extension_error_code
 if [ "$extension_error_code" -eq 1 ]
 then
