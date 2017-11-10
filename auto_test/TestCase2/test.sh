@@ -1,6 +1,6 @@
 #!/bin/sh
 echo "Test$1: Plugin Host Config File Missing"
-cd ../../
+cd ../../Microsoft.Azure.RecoveryServices.VMSnapshotLinux-*
 
 #pre backup steps
 mv /etc/azure/VMSnapshotScriptPluginConfig.json /tmp/

@@ -1,6 +1,6 @@
 #!/bin/sh
 echo "Test$1: Plugin Host Config File doesn't have desired permissions"
-cd ../../
+cd ../../Microsoft.Azure.RecoveryServices.VMSnapshotLinux-*
 
 #pre backup steps
 chmod 777 /etc/azure/VMSnapshotScriptPluginConfig.json

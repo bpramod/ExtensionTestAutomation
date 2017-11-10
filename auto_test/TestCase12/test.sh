@@ -5,7 +5,7 @@ echo "Test$1: Taking sequential snapshots"
 cp /etc/azure/vmbackup.conf /tmp/
 cp ./vmbackup.conf /etc/azure/
 
-cd ../../
+cd ../../Microsoft.Azure.RecoveryServices.VMSnapshotLinux-*
 iteration_number="$(python auto_test/generate_config_settings.py)"
 echo "Iteration Number : "$iteration_number
 snapshot_output="$(python main/handle.py -enable)"

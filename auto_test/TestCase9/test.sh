@@ -7,7 +7,7 @@ cp ./VMSnapshotScriptPluginConfig.json /etc/azure/
 cp /etc/azure/postScript.sh /tmp/
 cp ./postScript.sh /etc/azure
 
-cd ../../
+cd ../../Microsoft.Azure.RecoveryServices.VMSnapshotLinux-*
 iteration_number="$(python auto_test/generate_config_settings.py)"
 echo "Iteration Number : "$iteration_number
 snapshot_output="$(python main/handle.py -enable)"
