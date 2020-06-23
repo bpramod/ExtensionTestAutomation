@@ -1,9 +1,7 @@
 import test_utils
 import json
-import urlparse
+import urllib.parse
 import os
-
-
 
 def main():
     test_config_file = os.getcwd() + '/testconfig.json'
@@ -23,11 +21,11 @@ def main():
     headers["Content-Length"] = '0'
     body_content = ''
     for sasuri in diskBlobSasUriList:
-        sasuri_obj = urlparse.urlparse(sasuri)
+        sasuri_obj = urllib.parse.urlparse(sasuri)
         result, httpResp, errMsg = test_utils.HttpCallGetResponse('DELETE', sasuri_obj, body_content, headers = headers)
         if httpResp.status != 202:
             all_snapshots_deleted = False
     return all_snapshots_deleted
 
 if __name__ == "__main__":
-    print main()
+    main()

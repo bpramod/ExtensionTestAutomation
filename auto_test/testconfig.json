@@ -1,6 +1,6 @@
 {
-    "StorageAccountName" : "pramb6024",
-    "StorageAccountKey" : "Wf/frTPMlPT3Oe21ZE85g/h8vR8wtkUmiWY+Zok3m/vtlMOH8Jtes/++8ykIEs75RK4OopXHnEbIAG2aW4p8Bg==",
+    "StorageAccountName" : "shridtestinginfra",
+    "StorageAccountKey" : "G1LGTH2ssiOCntIVPkx4a2dGSybx6KorCc71b/n/HD6ejwUrDi8GUKZrifvyDzOgOeS+5OAKtKqXtn5hnGtQCg==",
     "BlobContainerName" : "test",
     "BlobNames" : ["disk1","disk2"],
     "LogContainerName" : "test",

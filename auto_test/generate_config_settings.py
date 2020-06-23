@@ -6,8 +6,8 @@ import hashlib
 import urllib
 import datetime
 import traceback
-import urlparse
-import httplib
+import urllib.parse
+import http.client
 import json
 import string
 import random
@@ -36,7 +36,7 @@ def main():
     StatusBlobSasUri = test_utils.get_blob_sas_uri(StorageAccountName,StorageAccountKey,configData["StatusContainerName"],configData["StatusBlobName"])
     settingsFileName = str(int(time.time()))
     InitBackupHandlerConfiguration(settingsFileName,certThumbprint,diskBlobSasUriList,logBlobSasUri,StatusBlobSasUri)
-    print settingsFileName
+    print(settingsFileName)
 
 def InitBackupHandlerConfiguration(settingsFileName,certThumbprint,diskBlobSasUriList,logBlobSasUri,StatusBlobSasUri):
     sampleMetadata = [{'Key':'key1','Value':'value1'},{'Key':'key2','Value':'value2'}]
@@ -50,7 +50,7 @@ def InitBackupHandlerConfiguration(settingsFileName,certThumbprint,diskBlobSasUr
     print
     print
     print base64.decodestring(publicStr)'''
-    taskId = ''.join(random.choice(string.lowercase) for i in range(15))
+    taskId = ''.join(random.choice(string.ascii_lowercase) for i in range(15))
     publicConfig = "{" + "\"locale\":\"en-us\"," + "\"logsBlobUri\":\"" + logBlobSasUri + "\"," + "\"taskId\":\"" + taskId + "\"," + "\"statusBlobUri\":\"" + StatusBlobSasUri + "\"," + "\"commandStartTimeUTCTicks\":\""+ str(int(test_utils.ticks())) + "\"," +"\"vmType\": \"microsoft.compute/virtualmachines\","+ "\"objectStr\":\"" +  publicStr +  "\"," + "\"commandToExecute\":\"" + "Snapshot\"" + "}"
     privateConfig = "{\"logsBlobUri\":\"" + logBlobSasUri +  "\"," + "\"objectStr\":\"" + privateStr + "\"" + "}"
     '''print
