@@ -6,8 +6,8 @@ import hashlib
 import urllib
 import datetime
 import traceback
-import urlparse
-import httplib
+import urllib.parse
+import http.client
 import json
 import string
 import random
@@ -49,7 +49,7 @@ def get_blob_sas_uri(StorageAccountName,StorageAccountKey,AzureContainer,AzureBl
     hashed = hmac.new(base64.b64decode(StorageAccountKey), digestmod=hashlib.sha256)
     hashed.update(StringToSign)
     signature = base64.encodestring(hashed.digest()).strip()
-    blob_sas_uri = signedProtocol + '://'+StorageAccountName+'.blob.core.windows.net/'+AzureContainer+'/'+AzureBlob+'?sv='+signedversion + '&sr=b&sig=' + urllib.quote(signature) + '&st=' + urllib.quote(str(signedstartISO)) + '&se=' + urllib.quote(str(signedexpiryISO)) + '&sp=' + signedpermissions + '&spr=' + signedProtocol
+    blob_sas_uri = signedProtocol + '://'+StorageAccountName+'.blob.core.windows.net/'+AzureContainer+'/'+AzureBlob+'?sv='+signedversion + '&sr=b&sig=' + urllib.parse.quote(signature) + '&st=' + urllib.parse.quote(str(signedstartISO)) + '&se=' + urllib.parse.quote(str(signedexpiryISO)) + '&sp=' + signedpermissions + '&spr=' + signedProtocol
     return blob_sas_uri
 
 def HttpCallGetResponse(method, sasuri_obj, data, headers):
@@ -58,7 +58,7 @@ def HttpCallGetResponse(method, sasuri_obj, data, headers):
     errorMsg = None
     try:
         resp = None
-        connection = httplib.HTTPSConnection(sasuri_obj.hostname, timeout = 10)
+        connection = http.client.HTTPSConnection(sasuri_obj.hostname, timeout = 10)
         connection.request(method=method, url=(sasuri_obj.path + '?' + sasuri_obj.query), body=data, headers = headers)
         resp = connection.getresponse()
         connection.close()
@@ -86,7 +86,7 @@ def WriteBlockBlob(msg,blobUri):
     retry_times = 3
     while(retry_times > 0):
         if(blobUri is not None):
-            sasuri_obj = urlparse.urlparse(blobUri)
+            sasuri_obj = urllib.parse.urlparse(blobUri)
             headers = {}
             headers["x-ms-blob-type"] = 'BlockBlob'
             result = Call(method = 'PUT', sasuri_obj = sasuri_obj, data = msg, headers = headers, fallback_to_curl = True)
@@ -96,5 +96,5 @@ def WriteBlockBlob(msg,blobUri):
                 retry_times = 0
         retry_times = retry_times - 1
 
-if __name__ == "__main__":
-    main()
+#if __name__ == "__main__":
+#    main()
