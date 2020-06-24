@@ -5,7 +5,7 @@ import remove_blob_snapshots
 
 def run_testcase(testcase_no):
     cwd = os.getcwd()
-    os.chdir(cwd+"/TestCase"+str(testcase_no))
+    os.chdir(cwd+"/auto_test/TestCase"+str(testcase_no))
     test_case = subprocess.Popen(["./test.sh",str(testcase_no)],stdout=subprocess.PIPE)
     while(test_case.poll() is None):
         time.sleep(1)

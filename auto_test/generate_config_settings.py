@@ -42,24 +42,24 @@ def InitBackupHandlerConfiguration(settingsFileName,certThumbprint,diskBlobSasUr
     sampleMetadata = [{'Key':'key1','Value':'value1'},{'Key':'key2','Value':'value2'}]
     publicStr = "{ \"backupMetadata\" : " + json.dumps(sampleMetadata) + "}"
     privateStr = "{\"blobSASUri\":" + json.dumps(diskBlobSasUriList) + "}"
-    publicStr = base64.encodestring(publicStr.encode('utf-8'))
-    privateStr =  base64.encodestring(privateStr.encode('utf-8'))
+    publicStr = str(base64.encodestring(publicStr.encode('utf-8')))
+    privateStr =  str(base64.encodestring(privateStr.encode('utf-8')))
     publicStr = publicStr.replace("\n","")
     privateStr = privateStr.replace("\n","")
-    '''print base64.decodestring(privateStr)
-    print
-    print
-    print base64.decodestring(publicStr)'''
+    #'''print base64.decodestring(privateStr)
+    #print
+    #print
+    #print base64.decodestring(publicStr)'''
     taskId = ''.join(random.choice(string.ascii_lowercase) for i in range(15))
     publicConfig = "{" + "\"locale\":\"en-us\"," + "\"logsBlobUri\":\"" + logBlobSasUri + "\"," + "\"taskId\":\"" + taskId + "\"," + "\"statusBlobUri\":\"" + StatusBlobSasUri + "\"," + "\"commandStartTimeUTCTicks\":\""+ str(int(test_utils.ticks())) + "\"," +"\"vmType\": \"microsoft.compute/virtualmachines\","+ "\"objectStr\":\"" +  publicStr +  "\"," + "\"commandToExecute\":\"" + "Snapshot\"" + "}"
     privateConfig = "{\"logsBlobUri\":\"" + logBlobSasUri +  "\"," + "\"objectStr\":\"" + privateStr + "\"" + "}"
-    '''print
-    print
-    print publicConfig
-    print
-    print
-    print privateConfig
-    test_pu = json.loads(privateConfig)'''
+    #'''print
+    #print
+    #print publicConfig
+    #print
+    #print
+    #print privateConfig
+    #test_pu = json.loads(privateConfig)'''
     InitHandlerConfiguration(settingsFileName, certThumbprint, publicConfig, privateConfig)
 
 
@@ -72,7 +72,7 @@ def InitHandlerConfiguration(settingsFileName, certThumbprint, publicConfig, pri
     while(encrypt.poll() is None):
         time.sleep(1)
     output = encrypt.stdout.read()
-    encryptedPrivateConfig = base64.encodestring(output)
+    encryptedPrivateConfig = str(base64.encodestring(output))
     encryptedPrivateConfig = encryptedPrivateConfig.replace("\n","")
     file_content = "{" + "\"runtimeSettings\": [" + "{" + "\"handlerSettings\": {" + "\"protectedSettings\": \""+ encryptedPrivateConfig +"\"," + "\"protectedSettingsCertThumbprint\": \""+ certThumbprint +"\"," + "\"publicSettings\": "+ publicConfig + "}" + "}" + "]" + "}"
     settings_file = open(extension_path + config_path + settingsFileName+".settings","w+")

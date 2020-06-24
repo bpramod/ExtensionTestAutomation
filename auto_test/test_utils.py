@@ -15,7 +15,7 @@ import subprocess
 import tempfile
 
 waagent_path = '/var/lib/waagent/'
-extension_path = 'Microsoft.Azure.RecoveryServices.VMSnapshotLinux-1.0.9109.0/'
+extension_path = 'Microsoft.Azure.RecoveryServices.VMSnapshotLinux-*/'
 config_path = 'config/'
 auto_test = 'auto_test/'
 test_config_file = waagent_path + extension_path + auto_test + 'testconfig.json'

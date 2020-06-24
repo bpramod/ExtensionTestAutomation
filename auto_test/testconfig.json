@@ -7,5 +7,5 @@
     "LogBlobName" : "logs.txt",
     "StatusContainerName" : "test",
     "StatusBlobName" : "status.txt",
-    "CertThumbprint" : "13CC23F9AFBF4CBA045573DC22B9A3BE884D9B14"
+    "CertThumbprint" : "F01C9449AFEA18E862FC7448AEB65C37587DB31C"
 }
