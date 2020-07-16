@@ -12,7 +12,7 @@ def run_testcase(testcase_no):
     output = test_case.stdout.read()
     print(output)
     os.chdir(cwd)
-    if "Passed" in output:
+    if "Passed" in str(output):
         return True
     else:
         return False
@@ -20,14 +20,14 @@ def run_testcase(testcase_no):
 print ("Running Test Cases")
 testcases_passed = 0
 testcases_failed = 0
-for i in range(1,2):
+for i in range(16,22):
     if(run_testcase(i)):
         testcases_passed = testcases_passed + 1
     else:
         testcases_failed = testcases_failed + 1
 
 
-#print ("All Snapshots Deleted : ", str(remove_blob_snapshots.main()))
+print ("All Snapshots Deleted : ", str(remove_blob_snapshots.main()))
 print ("Number of TestCases Passed : ", str(testcases_passed))
 print ("Number of TestCases Failed : ", str(testcases_failed))
 print ("TestCase pass percentage : ", str(((testcases_passed*(1.0))/(testcases_passed+testcases_failed))*100))
